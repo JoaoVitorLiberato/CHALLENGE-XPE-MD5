@@ -4,19 +4,25 @@ import { cors } from "@elysiajs/cors";
 import { swagger } from "@elysiajs/swagger";
 import { jwt } from "@elysiajs/jwt"
 import { ApiKeyMiddleware } from "./Middlewares/ApiKeyMiddleware.prensetation.http.middlewares";
-import { UsuariosRouter } from "./Routes/UsuariosRouter.presentation.http.routes";
+import { ConnecDatabase } from "../../Infrastructure/Database/Config/ConnectDB.infrastructre.database.config";
+import { cookie } from "@elysiajs/cookie";
+
+import { ClientRouter } from "./Routes/ClientRouter.presentation.http.routes";
+import { CategoryRouter } from "./Routes/CategoryRouter.presentation.http.routes";
 
 const App = new Elysia();
 
-App.use(cors());
+App.use(cors({ origin: true }));
 App.onBeforeHandle((ctx) => ApiKeyMiddleware(ctx as Context));
 
 App.use(jwt({
   name: "security",
   secret: String(process.env.APPLICATION_SECRET_KEY),
-  exp: "1d",
+  exp: "8h",
   alg: "HS256"
 }));
+
+App.use(cookie());
 
 App.use(
   swagger({
@@ -28,8 +34,12 @@ App.use(
       },
       tags: [
         {
-          name: "Usuários",
-          description: "Gerenciamento de usuários",
+          name: "Servidor",
+          description: "Gerenciamento de servidor",
+        },
+        {
+          name: "Clientes",
+          description: "Gerenciamento de clientes",
         },
         {
           name: "Produtos",
@@ -39,6 +49,10 @@ App.use(
           name: "Pedidos",
           description: "Gerenciamento de pedidos",
         },
+        {
+          name: "Categorias",
+          description: "Gerenciamento de categorias",
+        }
       ],
     },
   })
@@ -46,7 +60,12 @@ App.use(
 
 App.group("", (app) => 
   app
-  .use(UsuariosRouter)
+  .use(ClientRouter)  
+  .use(CategoryRouter)
 );
+
+App.onStart(async () => {
+  await ConnecDatabase();
+});
 
 export default App;

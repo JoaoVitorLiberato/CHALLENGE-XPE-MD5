@@ -1,7 +1,8 @@
 import { JwtContext } from "../Types/JwtContextType.presentation.http";
+import { Context } from "elysia";
 
 export class JwtMiddleware {
-  async validate ({ request, set, security }: JwtContext) {
+  static async validate ({ request, set, security }: any) {
     const TOKEN = request.headers.get("Authorization")?.split(" ")[1];
 
     if (!TOKEN) {
@@ -14,7 +15,7 @@ export class JwtMiddleware {
     const VALIDATE = await security.verify(TOKEN);
 
     if (!VALIDATE) {
-      set.status = 401; 
+      set.status = 401;
       return {
         message: "Token inválido",
       };
