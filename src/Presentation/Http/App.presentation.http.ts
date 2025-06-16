@@ -11,6 +11,7 @@ import { ClientRouter } from "./Routes/ClientRouter.presentation.http.routes";
 import { CategoryRouter } from "./Routes/CategoryRouter.presentation.http.routes";
 import { UserRouter } from "./Routes/UserRouter.presentation.http.routes";
 import { AuthRouter } from "./Routes/AuthRouter.presentation.http.routes";
+import { ProductRouter } from "./Routes/ProductRouter.presentation.http.routes";
 
 const App = new Elysia();
 
@@ -70,6 +71,7 @@ App.group("", (app) =>
   .use(CategoryRouter)
   .use(UserRouter)
   .use(AuthRouter)
+  .use(ProductRouter)
 );
 
 App.onStart(async () => {
