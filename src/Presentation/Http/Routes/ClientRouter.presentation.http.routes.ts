@@ -7,63 +7,24 @@ const router = new Elysia();
 const controller = new ClientController();
 
 router
-  .onBeforeHandle((ctx) => JwtMiddleware.validate(ctx as IJwtContext))
   .get("/clients",
-    (ctx) => controller.count(ctx as Context),
+    (ctx) => controller.findAll(ctx as unknown as IJwtContext),
     {
       tags: ["Clientes"],
       detail: {
-        summary: "Buscar clientes e conta-los",
-        description: "Busca todos os clientes no banco de dados e conta-os",
+        summary: "Buscar todos clientes",
+        description: "Busca todos os clientes no banco de dados",
       },
       headers: t.Object({
         "x-api-key": t.String(),
-        "authorization": t.String(),
       }),
       response: {
         200: t.Object({
           message: t.String(),
-          data: t.Object({
-            count: t.Number(),
-            rows: t.Array(t.Object({
-              id: t.String(),
-              name: t.String()
-            }))
-          }),
-        }),
-        400: t.Object({
-          message: t.String(),
-        }),
-      }
-    }
-  )
-
-router
-  .onBeforeHandle((ctx) => JwtMiddleware.validate(ctx as IJwtContext))
-  .post("/client/name",
-    (ctx) => controller.findByName(ctx as Context),
-    {
-      tags: ["Clientes"],
-      detail: {
-        summary: "Buscar cliente por nome",
-        description: "Busca um cliente no banco de dados pelo nome",
-      },
-      body: t.Object({
-        name: t.String(),
-      }),
-      headers: t.Object({
-        "x-api-key": t.String(),
-        "authorization": t.String(),
-      }),
-      response: {
-        200: t.Object({
-          message: t.String(),
-          data: t.Object({
+          data: t.Array(t.Object({
             id: t.String(),
-            name: t.String(),
-            createdAt: t.Date(),
-            updatedAt: t.Date(),
-          }),
+            name: t.String()
+          })),
         }),
         400: t.Object({
           message: t.String(),
@@ -73,43 +34,43 @@ router
         }),
       }
     }
-  );
+  )
 
 router
-  .onBeforeHandle((ctx) => JwtMiddleware.validate(ctx as IJwtContext))
-  .post("/client/create",
-    (ctx) => controller.create(ctx as Context),
+  .get("/clients/count",
+    (ctx) => controller.count(ctx as unknown as IJwtContext),
     {
       tags: ["Clientes"],
       detail: {
-        summary: "Criar cliente",
-        description: "Cria um novo cliente no banco de dados",
+        summary: "Buscar clientes e conta-los",
+        description: "Busca todos os clientes no banco de dados e conta-os",
       },
-      body: t.Object({
-        name: t.String()
-      }),
       headers: t.Object({
         "x-api-key": t.String(),
-        "authorization": t.String(),
       }),
       response: {
         200: t.Object({
           message: t.String(),
           data: t.Object({
-            id: t.String(),
+            quantity: t.Number(),
           }),
         }),
         400: t.Object({
           message: t.String(),
         }),
+        404: t.Object({
+          message: t.String(),
+          data: t.Object({
+            quantity: t.Number(),
+          }),
+        }),
       }
     }
-  );
+  )
 
 router
-  .onBeforeHandle((ctx) => JwtMiddleware.validate(ctx as IJwtContext))
   .get("/client/:id",
-    (ctx) => controller.findById(ctx as Context),
+    (ctx) => controller.findById(ctx as unknown as IJwtContext),
     {
       tags: ["Clientes"],
       detail: {
@@ -117,8 +78,7 @@ router
         description: "Busca um cliente no banco de dados pelo ID",
       },
       headers: t.Object({
-        "x-api-key": t.String(),
-        "authorization": t.String(),
+        "x-api-key": t.String()
       }),
       params: t.Object({
         id: t.String(),
@@ -137,6 +97,68 @@ router
           message: t.String(),
         }),
         404: t.Object({
+          message: t.String(),
+        }),
+      }
+    }
+  );
+
+router
+  .post("/client/name",
+    (ctx) => controller.findByName(ctx as unknown as IJwtContext),
+    {
+      tags: ["Clientes"],
+      detail: {
+        summary: "Buscar cliente por nome",
+        description: "Busca um cliente no banco de dados pelo nome",
+      },
+      body: t.Object({
+        name: t.String(),
+      }),
+      headers: t.Object({
+        "x-api-key": t.String(),
+      }),
+      response: {
+        200: t.Object({
+          message: t.String(),
+          data: t.Object({
+            id: t.String(),
+            name: t.String(),
+          }),
+        }),
+        400: t.Object({
+          message: t.String(),
+        }),
+        404: t.Object({
+          message: t.String(),
+        }),
+      }
+    }
+  );
+
+router
+  .post("/client/create",
+    (ctx) => controller.create(ctx as unknown as IJwtContext),
+    {
+      tags: ["Clientes"],
+      detail: {
+        summary: "Criar cliente",
+        description: "Cria um novo cliente no banco de dados",
+      },
+      body: t.Object({
+        name: t.String()
+      }),
+      headers: t.Object({
+        "x-api-key": t.String(),
+      }),
+      response: {
+        200: t.Object({
+          message: t.String(),
+          data: t.Object({
+            id: t.String(),
+          }),
+        }),
+        400: t.Object({
           message: t.String(),
         }),
       }

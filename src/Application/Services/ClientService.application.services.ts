@@ -64,16 +64,54 @@ export class ClientService {
     }
   }
 
+  async findAll(): Promise<any> {
+    try {
+      const responseRepository = await this.client.findAll();
+
+      if (responseRepository === "error-find-all-client") throw new Error("Houve um erro ao tentar buscar os clientes");
+      if ((responseRepository as ClientEntity[]).length === 0) {
+        return {
+          codigo: 404,
+          message: "Nenhum cliente encontrado",
+        }
+      }
+
+      console.log(responseRepository)
+      return {
+        codigo: 200,
+        message: "Clientes encontrados com sucesso",
+        data: responseRepository,
+      }
+    } catch (error) {
+      console.error("ERROR ClientService - findAll", error);
+      return {
+        codigo: 400,
+        message: "Houve um erro ao tentar buscar os clientes",
+      }
+    }
+  }
+
   async count(): Promise<any> {
     try {
       const responseRepository = await this.client.count();
 
       if (responseRepository === "error-count-client") throw new Error("Houve um erro ao tentar buscar o cliente");
+      if (responseRepository === 0) {
+        return {
+          codigo: 404,
+          message: "Nenhum cliente encontrado",
+          data: {
+            quantity: 0,
+          },  
+        }
+      }
 
       return {
         codigo: 200,
         message: "Clientes encontrados com sucesso",
-        data: responseRepository,
+        data: {
+          quantity: responseRepository,
+        },
       }
     } catch (error) {
       console.error("ERROR ClientService - count", error);

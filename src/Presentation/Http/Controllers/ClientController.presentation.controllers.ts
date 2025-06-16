@@ -7,10 +7,20 @@ import { ClientEntity } from "../../../Domain/Entities/ClientEntity.domain.entit
 import "../../../Shared/Containers/Controllers/ClientContainer.shared.containers.controllers"
 
 export class ClientController {
-  private readonly _service = container.resolve(ClientService);
+  private readonly service = container.resolve(ClientService);
 
   async create ({ body, set }: Context) {
-    const responseService = await this._service.create(body as ClientEntity);
+    const responseService = await this.service.create(body as ClientEntity);
+    set.status = responseService.codigo;
+
+    return {
+      message: responseService.message,
+      data: responseService.data,
+    };
+  }
+
+  async findAll ({ set }: Context) {
+    const responseService = await this.service.findAll();
     set.status = responseService.codigo;
 
     return {
@@ -20,7 +30,7 @@ export class ClientController {
   }
 
   async count ({ set }: Context) {
-    const responseService = await this._service.count();
+    const responseService = await this.service.count();
     set.status = responseService.codigo;
 
     return {
@@ -30,7 +40,7 @@ export class ClientController {
   }
 
   async findByName ({ body, set }: Context) {
-    const responseService = await this._service.findByName((body as { name: string }).name);
+    const responseService = await this.service.findByName((body as { name: string }).name);
     set.status = responseService.codigo;
 
     return {
@@ -40,7 +50,7 @@ export class ClientController {
   }
 
   async findById ({ params, set }: Context) {
-    const responseService = await this._service.findById(params.id);
+    const responseService = await this.service.findById(params.id);
     set.status = responseService.codigo;
 
     return {
@@ -50,7 +60,7 @@ export class ClientController {
   }
 
   async update ({ params, body, set }: Context) {
-    const responseService = await this._service.update(params.id, body as ClientEntity);
+    const responseService = await this.service.update(params.id, body as ClientEntity);
     set.status = responseService.codigo;
 
     return {
@@ -60,7 +70,7 @@ export class ClientController {
   }
 
   async delete ({ params, set }: Context) {
-    const responseService = await this._service.delete(params.id);
+    const responseService = await this.service.delete(params.id);
     set.status = responseService.codigo;
 
     return {

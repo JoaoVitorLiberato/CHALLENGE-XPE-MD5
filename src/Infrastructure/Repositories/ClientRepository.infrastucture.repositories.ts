@@ -10,7 +10,7 @@ export class ClientRepository implements IClientRepository {
       ClientModel.create({ ...client })
         .then((client) => resolve(client as unknown as ClientEntity))
         .catch((error) => {
-          console.error("ERROR ClientRepository - create", error.errors[0]);
+          console.error("ERROR ClientRepository - create", error);
 
           if (String(error.errors[0].message) === "email must be unique") {
             resolve("email-already-exists");
@@ -21,17 +21,24 @@ export class ClientRepository implements IClientRepository {
     });
   }
 
-  async count(): Promise<any|string> {
+  async count(): Promise<number|string> {
     return new Promise((resolve) => {
-      ClientModel.findAndCountAll({
-        attributes: {
-          exclude: ["password"],
-        },
-      })
+      ClientModel.count()
         .then((count) => resolve(count as unknown as any))
         .catch((error) => {
-          console.error("ERROR ClientRepository - count", error.errors[0]);
+          console.error("ERROR ClientRepository - count", error);
           resolve("error-count-client");
+        });
+    });
+  }
+
+  async findAll(): Promise<ClientEntity[]|string> {
+    return new Promise((resolve) => {
+      ClientModel.findAll()
+        .then((clients) => resolve(clients as unknown as ClientEntity[]))
+        .catch((error) => {
+          console.error("ERROR ClientRepository - findAll", error);
+          resolve("error-find-all-client");
         });
     });
   }
@@ -41,7 +48,7 @@ export class ClientRepository implements IClientRepository {
       ClientModel.findOne({ where: { name }, attributes: { exclude: ["password"] } })
         .then((client) => resolve(client as unknown as ClientEntity))
         .catch((error) => {
-          console.error("ERROR ClientRepository - findByName", error.errors[0]);
+          console.error("ERROR ClientRepository - findByName", error);
           resolve("error-find-client");
         });
     });
@@ -52,7 +59,7 @@ export class ClientRepository implements IClientRepository {
       ClientModel.findByPk(id)
         .then((client) => resolve(client as unknown as ClientEntity))
         .catch((error) => {
-          console.error("ERROR ClientRepository - findById", error.message);
+          console.error("ERROR ClientRepository - findById", error);
           resolve("error-find-client");
         });
     });
@@ -63,7 +70,7 @@ export class ClientRepository implements IClientRepository {
       ClientModel.update({ ...client }, { where: { id }, returning: true })
         .then((client) => resolve(client as unknown as ClientEntity))
         .catch((error) => {
-          console.error("ERROR ClientRepository - update", error.errors[0]);
+          console.error("ERROR ClientRepository - update", error);
 
           if (String(error.errors[0].message) === "email must be unique") {
             resolve("email-already-exists");
@@ -79,7 +86,7 @@ export class ClientRepository implements IClientRepository {
       ClientModel.destroy({ where: { id } })
         .then(() => resolve("success-delete-client"))
         .catch((error) => {
-          console.error("ERROR ClientRepository - delete", error.errors[0]);
+          console.error("ERROR ClientRepository - delete", error);
           resolve("error-delete-client");
         });
     });

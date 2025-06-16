@@ -10,7 +10,7 @@ export class CategoryRepository implements ICategoryRepository {
       CategoryModel.findAll()
         .then((categories) => resolve(categories as unknown as CategoryEntity[]))
         .catch((error) => {
-          console.error("ERROR CategoryRepository - findAll", error.message);
+          console.error("ERROR CategoryRepository - findAll", error);
           resolve("error-findAll-category");
         });
     });
@@ -25,7 +25,7 @@ export class CategoryRepository implements ICategoryRepository {
       })
         .then((category) => resolve(category as unknown as CategoryEntity))
         .catch((error) => {
-          console.error("ERROR CategoryRepository - findById", error.message);
+          console.error("ERROR CategoryRepository - findById", error);
           resolve("error-findById-category");
         });
     });
@@ -36,7 +36,7 @@ export class CategoryRepository implements ICategoryRepository {
       CategoryModel.findOne({ where: { name } })
         .then((category) => resolve(category as unknown as CategoryEntity))
         .catch((error) => {
-          console.error("ERROR CategoryRepository - findByName", error.message);
+          console.error("ERROR CategoryRepository - findByName", error);
           resolve("error-findByName-category");
         });
     });
@@ -47,7 +47,7 @@ export class CategoryRepository implements ICategoryRepository {
       CategoryModel.create({ ...data })
         .then((category) => resolve(category as unknown as CategoryEntity))
         .catch((error) => {
-          console.error("ERROR CategoryRepository - create", error.message);
+          console.error("ERROR CategoryRepository - create", error);
           resolve("error-create-category");
         });
     });
@@ -58,7 +58,7 @@ export class CategoryRepository implements ICategoryRepository {
       CategoryModel.update(data, { where: { id } })
         .then(() => resolve(data as unknown as CategoryEntity))
         .catch((error) => {
-          console.error("ERROR CategoryRepository - update", error.message);
+          console.error("ERROR CategoryRepository - update", error);
           resolve("error-update-category");
         });
     });
@@ -69,7 +69,7 @@ export class CategoryRepository implements ICategoryRepository {
       CategoryModel.destroy({ where: { id } })
         .then(() => resolve("Category deleted successfully"))
         .catch((error) => {
-          console.error("ERROR CategoryRepository - delete", error.message);
+          console.error("ERROR CategoryRepository - delete", error);
           resolve("error-delete-category");
         });
     });

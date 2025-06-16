@@ -21,6 +21,10 @@ export class ClientUseCase {
     return this.repository.count();
   }
 
+  async findAll(): Promise<ClientEntity[]|string> {
+    return this.repository.findAll();
+  }
+
   async findByName(name: string): Promise<ClientEntity|string> {
     return this.repository.findByName(name);
   }

@@ -10,7 +10,7 @@ export class UserRepository implements IUserRepository {
       UsersModel.create({ ...user })
         .then((user) => resolve(user as unknown as UserEntity))
         .catch((error) => {
-          console.error("ERROR UserRepository - create", error.errors[0].message);
+          console.error("ERROR UserRepository - create", error);
 
           if (String(error.errors[0].message) === "email must be unique") {
             resolve("email-already-exists");
@@ -26,7 +26,7 @@ export class UserRepository implements IUserRepository {
       UsersModel.findOne({ where: { email } })
         .then((user) => resolve(user as unknown as UserEntity))
         .catch((error) => {
-          console.error("ERROR UserRepository - findByEmail", error.errors[0].message);
+          console.error("ERROR UserRepository - findByEmail", error);
           resolve("error-find-user-by-email");
         });
     });
@@ -37,7 +37,7 @@ export class UserRepository implements IUserRepository {
       UsersModel.update({ ...user }, { where: { id }, returning: true })
         .then((user) => resolve(user as unknown as UserEntity))
         .catch((error) => {
-          console.error("ERROR UserRepository - update", error.errors[0].message);
+          console.error("ERROR UserRepository - update", error);
 
           if (String(error.errors[0].message) === "email must be unique") {
             resolve("email-already-exists");
