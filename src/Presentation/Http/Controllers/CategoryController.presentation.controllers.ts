@@ -7,11 +7,11 @@ import { CategoryEntity } from "../../../Domain/Entities/CategoryEntity.domain.e
 import "../../../Shared/Containers/Controllers/CategoryContainer.shared.containers.controllers";
 
 export class CategoryController {
-  private readonly _service = container.resolve(CategoryService);
+  private readonly service = container.resolve(CategoryService);
 
    async create({ body, set }: Context) {
     const dto = body as CategoryEntity;
-    const responseService = await this._service.create(dto);
+    const responseService = await this.service.create(dto);
     set.status = responseService.codigo;
 
     return {
@@ -21,7 +21,7 @@ export class CategoryController {
   }
 
   async findAll({ set }: Context) {
-    const responseService = await this._service.findAll();
+    const responseService = await this.service.findAll();
     set.status = responseService.codigo;
 
     return {
@@ -33,9 +33,8 @@ export class CategoryController {
   async findByName({ set, body }: Context) {
     const { name } = body as CategoryEntity;
 
-    const responseService = await this._service.findByName(name);
+    const responseService = await this.service.findByName(name);
     set.status = responseService.codigo;
-    console.log(responseService);
 
     return {
       message: responseService.mensage,
@@ -44,7 +43,7 @@ export class CategoryController {
   }
 
   async findById({ params, set }: Context) {
-    const responseService = await this._service.findById(params.id);
+    const responseService = await this.service.findById(params.id);
     set.status = responseService.codigo;
 
     return {
@@ -55,7 +54,7 @@ export class CategoryController {
 
   async update({ params, body, set }: Context) {
     const dto = body as CategoryEntity;
-    const responseService = await this._service.update(params.id, dto);
+    const responseService = await this.service.update(params.id, dto);
     set.status = responseService.codigo;
 
     return {
@@ -65,7 +64,7 @@ export class CategoryController {
   }
 
   async delete({ params, set }: Context) {
-    const responseService = await this._service.delete(params.id);
+    const responseService = await this.service.delete(params.id);
     set.status = responseService.codigo;
 
     return {

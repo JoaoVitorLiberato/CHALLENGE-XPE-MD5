@@ -9,6 +9,8 @@ import { cookie } from "@elysiajs/cookie";
 
 import { ClientRouter } from "./Routes/ClientRouter.presentation.http.routes";
 import { CategoryRouter } from "./Routes/CategoryRouter.presentation.http.routes";
+import { UserRouter } from "./Routes/UserRouter.presentation.http.routes";
+import { AuthRouter } from "./Routes/AuthRouter.presentation.http.routes";
 
 const App = new Elysia();
 
@@ -18,7 +20,7 @@ App.onBeforeHandle((ctx) => ApiKeyMiddleware(ctx as Context));
 App.use(jwt({
   name: "security",
   secret: String(process.env.APPLICATION_SECRET_KEY),
-  exp: "8h",
+  exp: "4h",
   alg: "HS256"
 }));
 
@@ -36,6 +38,10 @@ App.use(
         {
           name: "Servidor",
           description: "Gerenciamento de servidor",
+        },
+        {
+          name: "Auth",
+          description: "Gerenciamento de autenticação",
         },
         {
           name: "Clientes",
@@ -62,6 +68,8 @@ App.group("", (app) =>
   app
   .use(ClientRouter)  
   .use(CategoryRouter)
+  .use(UserRouter)
+  .use(AuthRouter)
 );
 
 App.onStart(async () => {

@@ -1,43 +1,13 @@
 import { Elysia, Context, t } from "elysia";
 import { ClientController } from "../Controllers/ClientController.presentation.controllers";
 import { JwtMiddleware } from "../Middlewares/JwtMiddleware.presentation.http.middlewares";
-import { JwtContext } from "../Types/JwtContextType.presentation.http";
+import { IJwtContext } from "../Types/IJwtContextType.presentation.http.types";
 
 const router = new Elysia();
 const controller = new ClientController();
 
 router
-  .post("/client/create",
-    (ctx) => controller.create(ctx as Context),
-    {
-      tags: ["Clientes"],
-      detail: {
-        summary: "Criar cliente",
-        description: "Cria um novo cliente no banco de dados",
-      },
-      body: t.Object({
-        name: t.String(),
-        email: t.String(),
-        password: t.String(),
-      }),
-      headers: t.Object({
-        "x-api-key": t.String(),
-      }),
-      response: {
-        200: t.Object({
-          message: t.String(),
-          data: t.Object({
-            id: t.String(),
-          }),
-        }),
-        400: t.Object({
-          message: t.String(),
-        }),
-      }
-    }
-  );
-
-router
+  .onBeforeHandle((ctx) => JwtMiddleware.validate(ctx as IJwtContext))
   .get("/clients",
     (ctx) => controller.count(ctx as Context),
     {
@@ -46,6 +16,10 @@ router
         summary: "Buscar clientes e conta-los",
         description: "Busca todos os clientes no banco de dados e conta-os",
       },
+      headers: t.Object({
+        "x-api-key": t.String(),
+        "authorization": t.String(),
+      }),
       response: {
         200: t.Object({
           message: t.String(),
@@ -65,6 +39,7 @@ router
   )
 
 router
+  .onBeforeHandle((ctx) => JwtMiddleware.validate(ctx as IJwtContext))
   .post("/client/name",
     (ctx) => controller.findByName(ctx as Context),
     {
@@ -78,6 +53,7 @@ router
       }),
       headers: t.Object({
         "x-api-key": t.String(),
+        "authorization": t.String(),
       }),
       response: {
         200: t.Object({
@@ -85,7 +61,6 @@ router
           data: t.Object({
             id: t.String(),
             name: t.String(),
-            email: t.String(),
             createdAt: t.Date(),
             updatedAt: t.Date(),
           }),
@@ -101,6 +76,38 @@ router
   );
 
 router
+  .onBeforeHandle((ctx) => JwtMiddleware.validate(ctx as IJwtContext))
+  .post("/client/create",
+    (ctx) => controller.create(ctx as Context),
+    {
+      tags: ["Clientes"],
+      detail: {
+        summary: "Criar cliente",
+        description: "Cria um novo cliente no banco de dados",
+      },
+      body: t.Object({
+        name: t.String()
+      }),
+      headers: t.Object({
+        "x-api-key": t.String(),
+        "authorization": t.String(),
+      }),
+      response: {
+        200: t.Object({
+          message: t.String(),
+          data: t.Object({
+            id: t.String(),
+          }),
+        }),
+        400: t.Object({
+          message: t.String(),
+        }),
+      }
+    }
+  );
+
+router
+  .onBeforeHandle((ctx) => JwtMiddleware.validate(ctx as IJwtContext))
   .get("/client/:id",
     (ctx) => controller.findById(ctx as Context),
     {
@@ -111,6 +118,7 @@ router
       },
       headers: t.Object({
         "x-api-key": t.String(),
+        "authorization": t.String(),
       }),
       params: t.Object({
         id: t.String(),
@@ -121,7 +129,6 @@ router
           data: t.Object({
             id: t.String(),
             name: t.String(),
-            email: t.String(),
             createdAt: t.Date(),
             updatedAt: t.Date()
           }),
@@ -137,6 +144,7 @@ router
   );
 
 router
+  .onBeforeHandle((ctx) => JwtMiddleware.validate(ctx as IJwtContext))
   .put("/client/update/:id",
     (ctx) => controller.update(ctx as Context),
     {
@@ -150,11 +158,10 @@ router
       }),
       headers: t.Object({
         "x-api-key": t.String(),
+        "authorization": t.String(),
       }),
       body: t.Object({
         name: t.String(),
-        email: t.String(),
-        password: t.String(),
       }),
       response: {
         200: t.Object({
@@ -174,6 +181,7 @@ router
   );
 
 router
+  .onBeforeHandle((ctx) => JwtMiddleware.validate(ctx as IJwtContext))
   .delete("/client/delete/:id",
     (ctx) => controller.delete(ctx as Context),
     {
@@ -187,6 +195,7 @@ router
       }),
       headers: t.Object({
         "x-api-key": t.String(),
+        "authorization": t.String(),
       }),
       response: {
         200: t.Object({

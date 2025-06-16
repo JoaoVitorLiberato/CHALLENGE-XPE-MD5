@@ -1,7 +1,6 @@
 import { injectable } from "tsyringe";
 import { ClientUseCase } from "../UseCases/ClientUseCase.application.usecases";
 import { ClientEntity } from "../../Domain/Entities/ClientEntity.domain.entities";
-import argon2 from "argon2";
 
 @injectable()
 export class ClientService {
@@ -11,8 +10,7 @@ export class ClientService {
 
   async create (data: ClientEntity): Promise<any> {
     try {
-      const HASH_PASSWORD = await argon2.hash(data.password);
-      const responseRepository = await this.client.create({ ...data, password: HASH_PASSWORD });
+      const responseRepository = await this.client.create(data);
 
       if (responseRepository === "error-create-client") throw new Error("Houve um erro ao tentar criar o cliente");
 
@@ -126,14 +124,7 @@ export class ClientService {
         }
       }
 
-      const PASSWORD_ACTUAL = (responseRepositoryFindById as ClientEntity).password;
-      const VALIDATE_PASSWORD = await argon2.verify(PASSWORD_ACTUAL, data.password);
-
-      const NEW_HASH_PASSWORD = VALIDATE_PASSWORD ?
-        PASSWORD_ACTUAL :
-        await argon2.hash(data.password);
-
-      const responseRepository = await this.client.update(id, { ...data, password: NEW_HASH_PASSWORD });
+      const responseRepository = await this.client.update(id, { ...data });
 
       if (responseRepository === "error-update-client") throw new Error("Houve um erro ao tentar atualizar o cliente");
 

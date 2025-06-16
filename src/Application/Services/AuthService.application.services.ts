@@ -1,0 +1,61 @@
+import { injectable, inject } from "tsyringe";
+import { IUserAuthContract } from "../Contracts/IUserAuthContract.application.contracts";
+import { IJwtContext } from "../../Presentation/Http/Types/IJwtContextType.presentation.http.types";
+import argon2 from "argon2";
+
+interface IAuthService extends IUserAuthContract {}
+
+@injectable()
+export class AuthService {
+  constructor(
+    @inject("IUserAuthContract")
+      private user: IAuthService
+  ) {}
+
+  async login(email: string, password: string, context: IJwtContext): Promise<any> {
+    try {
+      const responseRepository = await this.user.findByEmail(email);
+      if (responseRepository === "error-find-client-by-email") throw new Error("Houve um erro ao tentar buscar o cliente pelo email");
+
+      if (!responseRepository) {
+        return {
+          codigo: 404,
+          message: "Usuário não encontrado",
+        }
+      }
+
+      const PASSWORD_ACTUAL = responseRepository.data.password as string;
+  
+      if (!PASSWORD_ACTUAL) throw new Error("Houve um erro ao tentar buscar a senha do usuário");
+      const VALIDATE_PASSWORD = await argon2.verify(String(PASSWORD_ACTUAL), password);
+
+      if (!VALIDATE_PASSWORD) {
+        return {
+          codigo: 400,
+          message: "Email ou senha incorreto",
+        }
+      }
+
+      const { security } = context;
+      const TOKEN = await security.sign(
+        { email },
+        String(process.env.APPLICATION_SECRET_KEY),
+        { expiresIn: "4h" }
+      );
+
+      return {
+        codigo: 200,
+        message: "Login realizado com sucesso",
+        data: {
+          token: TOKEN,
+        }
+      }
+    } catch (error) {
+      console.error("ERROR AuthService - login", error);
+      return {
+        codigo: 400,
+        message: "Houve um erro ao tentar fazer login",
+      }
+    }
+  }
+}

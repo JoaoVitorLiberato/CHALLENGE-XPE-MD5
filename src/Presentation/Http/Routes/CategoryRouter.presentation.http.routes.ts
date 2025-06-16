@@ -1,5 +1,7 @@
 import { Context, Elysia, t } from "elysia";
 import { CategoryController } from "../Controllers/CategoryController.presentation.controllers";
+import { JwtMiddleware } from "../Middlewares/JwtMiddleware.presentation.http.middlewares";
+import { IJwtContext } from "../Types/IJwtContextType.presentation.http.types";
 
 const router = new Elysia();
 const controller = new CategoryController();
@@ -68,6 +70,7 @@ router
 
 
 router
+  .onBeforeHandle((ctx) => JwtMiddleware.validate(ctx as IJwtContext))
   .get("/category/:id",
     (ctx) => controller.findById(ctx as Context),
     {
@@ -80,6 +83,7 @@ router
         id: t.String(),
       }),
       headers: t.Object({
+        "authorization": t.String(),
         "x-api-key": t.String(),
       }),
       response: {
@@ -101,6 +105,7 @@ router
   );
 
 router
+  .onBeforeHandle((ctx) => JwtMiddleware.validate(ctx as IJwtContext))
   .post("/category/create",
     (ctx) => controller.create(ctx as Context),
     {
@@ -115,6 +120,7 @@ router
       }),
       headers: t.Object({
         "x-api-key": t.String(),
+        "authorization": t.String(),
       }),
       response: {
         200: t.Object({
@@ -134,6 +140,7 @@ router
   );
 
 router
+  .onBeforeHandle((ctx) => JwtMiddleware.validate(ctx as IJwtContext))
   .put("/category/update/:id",
     (ctx) => controller.update(ctx as Context),
     {
@@ -151,6 +158,7 @@ router
       }),
       headers: t.Object({
         "x-api-key": t.String(),
+        "authorization": t.String(),
       }),
       response: {
         200: t.Object({
@@ -168,7 +176,9 @@ router
       }
     },
   );
+
 router
+  .onBeforeHandle((ctx) => JwtMiddleware.validate(ctx as IJwtContext))
   .delete("/category/delete/:id",
     (ctx) => controller.delete(ctx as Context),
     {
@@ -182,6 +192,7 @@ router
       }),
       headers: t.Object({
         "x-api-key": t.String(),
+        "authorization": t.String(),
       }),
       response: {
         200: t.Object({

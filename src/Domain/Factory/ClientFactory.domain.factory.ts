@@ -13,35 +13,16 @@ export class ClientFactory {
       return "Name can only contain letters and spaces";
     }
 
-    if (!data.email) {
-      return "Email is required";
-    }
-
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(data.email)) {
-      return "Invalid email format";
-    }
-
-    if (!data.password) {
-      return "Password is required";
-    }
-
-    if (data.password.length < 8) {
-      return "Password must have at least 8 characters";
-    }
-
     return true;
   }
 
-  static create(data: ClientEntity): ClientEntity {
+  static save (data: ClientEntity): ClientEntity {
     if (typeof this.validate(data) === "string") {
       throw new Error(this.validate(data) as string);
     }
 
     return new ClientEntity(
       data.name,
-      data.email,
-      data.password,
       data.createdAt,
       data.updatedAt,
       data.id,

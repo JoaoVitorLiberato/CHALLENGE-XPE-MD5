@@ -1,8 +1,8 @@
 import { DataTypes } from "sequelize";
 import { Database } from "../Config/ConnectDB.infrastructre.database.config";
 
-export const ClientModel = Database.define(
-  "clients", 
+export const UsersModel = Database.define(
+  "users", 
   {
     id: {
       type: DataTypes.UUID,
@@ -10,6 +10,15 @@ export const ClientModel = Database.define(
       primaryKey: true,
     },
     name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    password: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -23,7 +32,7 @@ export const ClientModel = Database.define(
     },
   },
   {
-    tableName: "clients",
+    tableName: "users",
     timestamps: true,
     underscored: false,
   }

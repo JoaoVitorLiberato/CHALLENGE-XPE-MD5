@@ -1,8 +1,7 @@
-import { JwtContext } from "../Types/JwtContextType.presentation.http";
-import { Context } from "elysia";
+import { IJwtContext } from "../Types/IJwtContextType.presentation.http.types";
 
 export class JwtMiddleware {
-  static async validate ({ request, set, security }: any) {
+  static async validate ({ request, set, security }: IJwtContext) {
     const TOKEN = request.headers.get("Authorization")?.split(" ")[1];
 
     if (!TOKEN) {
@@ -20,7 +19,5 @@ export class JwtMiddleware {
         message: "Token inválido",
       };
     }
-
-    return VALIDATE;
   }
 }

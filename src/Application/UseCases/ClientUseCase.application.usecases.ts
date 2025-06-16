@@ -13,7 +13,7 @@ export class ClientUseCase {
   ) {}
 
   async create(data: ClientEntity): Promise<ClientEntity|string> {
-    const dto = ClientFactory.create(data);
+    const dto = ClientFactory.save(data);
     return this.repository.create(dto);
   }
 
@@ -30,7 +30,7 @@ export class ClientUseCase {
   }
 
   async update(id: string, data: ClientEntity): Promise<ClientEntity|string> {
-    const dto = ClientFactory.create(data);
+    const dto = ClientFactory.save(data);
     return this.repository.update(id, dto);
   }
 
