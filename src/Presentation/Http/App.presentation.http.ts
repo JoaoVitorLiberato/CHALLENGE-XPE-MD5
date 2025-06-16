@@ -41,8 +41,8 @@ App.use(
           description: "Gerenciamento de servidor",
         },
         {
-          name: "Auth",
-          description: "Gerenciamento de autenticação",
+          name: "Autenticação",
+          description: "Gerenciamento de autenticação de usuários",
         },
         {
           name: "Clientes",

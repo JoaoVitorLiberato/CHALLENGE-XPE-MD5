@@ -2,10 +2,10 @@ import argon2 from "argon2";
 import { injectable } from "tsyringe";
 import { UserUseCase } from "../UseCases/UserUseCase.application.usecases";
 import { UserEntity } from "../../Domain/Entities/UserEntity.domain.entities";
-import { IUserAuthContract } from "../Contracts/IUserAuthContract.application.contracts";
+import { IUserContract } from "../Contracts/IUserContract.application.contracts";
 
 @injectable()
-export class UserService implements IUserAuthContract {
+export class UserService implements IUserContract {
   constructor(
     private readonly user: UserUseCase
   ) {}

@@ -10,7 +10,7 @@ router
   .get("/products",
     (ctx) => controller.findAll(ctx as unknown as IJwtContext),
     {
-      tags: ["Product"],
+      tags: ["Produtos"],
       detail: {
         summary: "Buscar todos os produtos",
         description: "Buscar todos os produtos cadastrados no banco de dados",
@@ -44,7 +44,7 @@ router
   .get("/products/count",
     (ctx) => controller.count(ctx as unknown as IJwtContext),
     {
-      tags: ["Product"],
+      tags: ["Produtos"],
       detail: {
         summary: "Contar todos os produtos",
         description: "Contar todos os produtos cadastrados no banco de dados",
@@ -70,7 +70,7 @@ router
   .get("/product/:id",
     (ctx) => controller.findById(ctx as unknown as IJwtContext),
     {
-      tags: ["Product"],
+      tags: ["Produtos"],
       detail: {
         summary: "Procurar produto pelo id",
         description: "Procurar produto pelo id cadastrado no banco de dados",
@@ -109,7 +109,7 @@ router
   .post("/product/name",
     (ctx) => controller.findByName(ctx as unknown as IJwtContext),
     {
-      tags: ["Product"],
+      tags: ["Produtos"],
       detail: {
         summary: "Procurar produto pelo nome",
         description: "Procurar produto pelo nome cadastrado no banco de dados",
@@ -156,7 +156,7 @@ router
         categoryId: t.String(),
         image: t.String(),
       }),
-      tags: ["Product"],
+      tags: ["Produtos"],
       detail: {
         summary: "Criar um novo produto",
         description: "Criar um novo produto com os dados informados no banco de dados",
@@ -194,7 +194,7 @@ router
         categoryId: t.String(),
         image: t.String(),
       }),
-      tags: ["Product"],
+      tags: ["Produtos"],
       detail: {
         summary: "Atualizar um produto pelo id",
         description: "Atualizar um produto pelo id com os dados informados no banco de dados",
@@ -225,7 +225,7 @@ router
       params: t.Object({
         id: t.String(),
       }),
-      tags: ["Product"],
+      tags: ["Produtos"],
       detail: {
         summary: "Deletar um produto pelo id",
         description: "Deletar um produto pelo id cadastrado no banco de dados",

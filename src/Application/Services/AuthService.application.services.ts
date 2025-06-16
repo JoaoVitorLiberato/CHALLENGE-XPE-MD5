@@ -1,15 +1,15 @@
 import { injectable, inject } from "tsyringe";
-import { IUserAuthContract } from "../Contracts/IUserAuthContract.application.contracts";
+import { IUserContract } from "../Contracts/IUserContract.application.contracts";
 import { IJwtContext } from "../../Presentation/Http/Types/IJwtContextType.presentation.http.types";
 import argon2 from "argon2";
 
-interface IAuthService extends IUserAuthContract {}
+interface IUserService extends IUserContract {}
 
 @injectable()
 export class AuthService {
   constructor(
     @inject("IUserAuthContract")
-      private user: IAuthService
+      private readonly user: IUserService
   ) {}
 
   async login(email: string, password: string, context: IJwtContext): Promise<any> {
@@ -31,7 +31,7 @@ export class AuthService {
 
       if (!VALIDATE_PASSWORD) {
         return {
-          codigo: 400,
+          codigo: 401,
           message: "Email ou senha incorreto",
         }
       }

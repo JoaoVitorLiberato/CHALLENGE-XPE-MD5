@@ -15,7 +15,7 @@ export class CategoryController {
     set.status = responseService.codigo;
 
     return {
-      message: responseService.mensage,
+      message: responseService.message,
       data: responseService.data,
     };
   }
@@ -25,7 +25,7 @@ export class CategoryController {
     set.status = responseService.codigo;
 
     return {
-      message: responseService.mensage,
+      message: responseService.message,
       data: responseService.data,
     };
   }
@@ -37,7 +37,7 @@ export class CategoryController {
     set.status = responseService.codigo;
 
     return {
-      message: responseService.mensage,
+      message: responseService.message,
       data: responseService.data,
     };
   }
@@ -47,7 +47,7 @@ export class CategoryController {
     set.status = responseService.codigo;
 
     return {
-      message: responseService.mensage,
+      message: responseService.message,
       data: responseService.data,
     };
   }
@@ -58,7 +58,7 @@ export class CategoryController {
     set.status = responseService.codigo;
 
     return {
-      message: responseService.mensage,
+        message: responseService.message,
       data: responseService.data,
     };
   }
@@ -68,7 +68,7 @@ export class CategoryController {
     set.status = responseService.codigo;
 
     return {
-      message: responseService.mensage,
+      message: responseService.message,
       data: responseService.data,
     };
   }

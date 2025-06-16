@@ -1,15 +1,32 @@
-import { injectable } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 import { ProductUseCase } from "../UseCases/ProductUseCase.application.usecases";
 import { ProductEntity } from "../../Domain/Entities/ProductEntity.domain.entities";
+import { ICategoryContract } from "../Contracts/ICategoryContract.applicaiton.contracts";
+
+interface CategoryService extends ICategoryContract {}
 
 @injectable()
 export class ProductService {
   constructor(
-    private readonly product: ProductUseCase
+    private readonly product: ProductUseCase,
+    @inject("ICategoryContract") private readonly category: CategoryService
   ) {}
 
   async create(product: ProductEntity): Promise<any> {
     try {
+      const responseSerivceCategory = await this.category.findById(product.categoryId);
+      console.log(responseSerivceCategory);
+      
+      if (
+        (responseSerivceCategory as any).codigo === 400 ||
+        (responseSerivceCategory as any).codigo === 404
+      ) {
+        return {
+          codigo: (responseSerivceCategory as any).codigo,
+          message: (responseSerivceCategory as any).message,
+        };
+      }
+
       const responseRepository = await this.product.create(product);
       if (responseRepository === "error-create-product") throw new Error("Houve um erro ao criar o produto");
 
@@ -19,7 +36,7 @@ export class ProductService {
         data: {
           id: (responseRepository as { id: string }).id,
         }
-      };
+      }
     } catch (error) {
       console.error("[ERROR] ProductService - create", error);
       return {

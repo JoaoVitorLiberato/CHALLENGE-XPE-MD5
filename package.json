@@ -16,7 +16,8 @@
     "pg": "^8.16.0",
     "reflect-metadata": "^0.2.2",
     "sequelize": "^6.37.7",
-    "tsyringe": "^4.10.0"
+    "tsyringe": "^4.10.0",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "bun-types": "latest"

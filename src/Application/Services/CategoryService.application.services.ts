@@ -1,9 +1,10 @@
 import { injectable } from "tsyringe";
 import { CategoryUseCase } from "../UseCases/CategoryUseCase.application.usecases";
 import { CategoryEntity } from "../../Domain/Entities/CategoryEntity.domain.entities";
+import { ICategoryContract } from "../Contracts/ICategoryContract.applicaiton.contracts";
 
 @injectable()
-export class CategoryService {
+export class CategoryService implements ICategoryContract {
   constructor(
     private readonly category: CategoryUseCase,
   ) {}
@@ -16,7 +17,7 @@ export class CategoryService {
 
       return {
         codigo: 200,
-        mensage: "Categoria criada com sucesso",
+        message: "Categoria criada com sucesso",
         data: {
           id: (responseRepository as { id: string }).id,
         },
@@ -25,7 +26,7 @@ export class CategoryService {
       console.error("ERROR CategoryService - create", error);
       return {
         codigo: 400,
-        mensage: "Houve um erro ao tentar criar a categoria",
+        message: "Houve um erro ao tentar criar a categoria",
       }
     }
   }
@@ -38,21 +39,21 @@ export class CategoryService {
       if (responseRepository.length === 0) {
         return {
           codigo: 200,
-          mensage: "Nenhuma categoria encontrada",
+          message: "Nenhuma categoria encontrada",
           data: [],
         }
       }
 
       return {
         codigo: 200,
-        mensage: "Categorias encontradas com sucesso",
+        message: "Categorias encontradas com sucesso",
         data: responseRepository,
       }
     } catch (error) {
       console.error("ERROR CategoryService - findAll", error);
       return {
         codigo: 400,
-        mensage: "Houve um erro ao tentar buscar as categorias",
+        message: "Houve um erro ao tentar buscar as categorias",
       }
     }
   }
@@ -66,20 +67,20 @@ export class CategoryService {
       if (!responseRepository) {
         return {
           codigo: 404,
-          mensage: "Categoria não encontrada",
+          message: "Categoria não encontrada",
         }
       }
 
       return {
         codigo: 200,
-        mensage: "Categoria encontrada com sucesso",
+        message: "Categoria encontrada com sucesso",
         data: responseRepository,
       }
     } catch (error) {
       console.error("ERROR CategoryService - findById", error);
       return {
         codigo: 400,
-        mensage: "Houve um erro ao tentar buscar a categoria",
+        message: "Houve um erro ao tentar buscar a categoria",
       }
     }
   }
@@ -93,13 +94,13 @@ export class CategoryService {
       if (!responseRepository) {
         return {
           codigo: 404,
-          mensage: "Categoria não encontrada",
+          message: "Categoria não encontrada",
         }
       }
 
       return {
         codigo: 200,
-        mensage: "Categoria encontrada com sucesso",
+        message: "Categoria encontrada com sucesso",
         data: responseRepository,
       }
     } catch (error) {
@@ -120,7 +121,7 @@ export class CategoryService {
       if (!responseFindById) {
         return {
           codigo: 404,
-          mensage: "Houve um erro ao tentar atualizar a categoria",
+          message: "Categoria não encontrada",
         }
       }
 
@@ -130,7 +131,7 @@ export class CategoryService {
 
       return {
         codigo: 200,
-        mensage: "Categoria atualizada com sucesso",
+        message: "Categoria atualizada com sucesso",
         data: {
           id: id,
         },
@@ -139,7 +140,7 @@ export class CategoryService {
       console.error("ERROR CategoryService - update", error);
       return {
         codigo: 400,
-        mensage: "Houve um erro ao tentar atualizar a categoria",
+        message: "Houve um erro ao tentar atualizar a categoria",
       }
     }
   }
@@ -153,13 +154,13 @@ export class CategoryService {
       if (!responseRepository) {
         return {
           codigo: 404,
-          mensage: "Categoria não encontrada",
+          message: "Categoria não encontrada",
         }
       }
 
       return {
         codigo: 200,
-        mensage: "Categoria deletada com sucesso",
+        message: "Categoria deletada com sucesso",
         data: {
           id: id,
         },
@@ -168,7 +169,7 @@ export class CategoryService {
       console.error("ERROR CategoryService - delete", error);
       return {
         codigo: 400,
-        mensage: "Houve um erro ao tentar deletar a categoria",
+        message: "Houve um erro ao tentar deletar a categoria",
       }
     }
   }

@@ -1,5 +1,5 @@
 import { container } from "tsyringe";
-import { IUserAuthContract } from "../../../Application/Contracts/IUserAuthContract.application.contracts";
+import { IUserAuthContract } from "../../../Application/Contracts/IUserContract.application.contracts";
 import { UserService } from "../../../Application/Services/UserService.application.services";
 import { AuthService } from "../../../Application/Services/AuthService.application.services";
 import { UserUseCase } from "../../../Application/UseCases/UserUseCase.application.usecases";

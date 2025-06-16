@@ -1,29 +1,15 @@
 import { CategoryEntity } from "../Entities/CategoryEntity.domain.entities";
+import { Name } from "../Validators/Name.domain.validators";
+import { Description } from "../Validators/Description.domain.validators";
 
 export class CategoryFactory {
-  private static validate (data: CategoryEntity): string|boolean {
-    if (!data.name) {
-      return "Name is required";
-    }
-
-    if (!data.description) {
-      return "Description is required";
-    }
-
-    return false;
-  }
-
-  static save (data: CategoryEntity) {
-    if (typeof this.validate(data) === "string") {
-      throw new Error(this.validate(data) as string);
-    }
+  static save (props: CategoryEntity) {
+    const NAME = new Name(props.name);
+    const DESCRIPTION = new Description(props.description);
 
     return new CategoryEntity(
-      data.name,
-      data.description,
-      new Date(),
-      new Date(),
-      data.id
+      NAME.getValue(),
+      DESCRIPTION.getValue()
     );
   } 
 }
