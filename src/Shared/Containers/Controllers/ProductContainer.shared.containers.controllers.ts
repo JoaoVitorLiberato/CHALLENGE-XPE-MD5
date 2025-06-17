@@ -4,21 +4,10 @@ import { ProductUseCase } from "../../../Application/UseCases/ProductUseCase.app
 import { ProductRepository } from "../../../Infrastructure/Repositories/ProductRepository.infrastucture.repositories";
 import { IProductRepository } from "../../../Domain/Repositories/IProductRepository.domain.repositories";
 import { CategoryService } from "../../../Application/Services/CategoryService.application.services";
-import { ICategoryContract } from "../../../Application/Contracts/ICategoryContract.applicaiton.contracts";
+import { ICategoryContract } from "../../../Application/Contracts/ICategoryContract.application.contracts";
 
-container.register<IProductRepository>(
-  "IProductRepository",
-  {
-    useClass: ProductRepository,
-  }
-);
-
-container.register<ICategoryContract>(
-  "ICategoryContract",
-  {
-    useClass: CategoryService,
-  }
-);
+container.register<IProductRepository>("IProductRepository", { useClass: ProductRepository });
+container.register<ICategoryContract>("ICategoryContract", { useClass: CategoryService });
 
 container.registerSingleton<ProductUseCase>(ProductUseCase);
 container.registerSingleton<ProductUseCase>(ProductUseCase);

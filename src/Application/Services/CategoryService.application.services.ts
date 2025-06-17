@@ -1,7 +1,7 @@
 import { injectable } from "tsyringe";
 import { CategoryUseCase } from "../UseCases/CategoryUseCase.application.usecases";
 import { CategoryEntity } from "../../Domain/Entities/CategoryEntity.domain.entities";
-import { ICategoryContract } from "../Contracts/ICategoryContract.applicaiton.contracts";
+import { ICategoryContract } from "../Contracts/ICategoryContract.application.contracts";
 
 @injectable()
 export class CategoryService implements ICategoryContract {

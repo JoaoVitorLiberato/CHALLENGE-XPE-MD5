@@ -1,12 +1,13 @@
 import { inject, injectable } from "tsyringe";
 import { ProductUseCase } from "../UseCases/ProductUseCase.application.usecases";
 import { ProductEntity } from "../../Domain/Entities/ProductEntity.domain.entities";
-import { ICategoryContract } from "../Contracts/ICategoryContract.applicaiton.contracts";
+import { ICategoryContract } from "../Contracts/ICategoryContract.application.contracts";
+import { IProductContract } from "../Contracts/IProductContract.application.contracts";
 
 interface CategoryService extends ICategoryContract {}
 
 @injectable()
-export class ProductService {
+export class ProductService implements IProductContract {
   constructor(
     private readonly product: ProductUseCase,
     @inject("ICategoryContract") private readonly category: CategoryService
