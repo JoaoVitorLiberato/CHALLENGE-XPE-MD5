@@ -15,7 +15,6 @@ export class ProductService {
   async create(product: ProductEntity): Promise<any> {
     try {
       const responseSerivceCategory = await this.category.findById(product.categoryId);
-      console.log(responseSerivceCategory);
       
       if (
         (responseSerivceCategory as any).codigo === 400 ||

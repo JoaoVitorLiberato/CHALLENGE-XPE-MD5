@@ -1,6 +1,7 @@
 import { injectable, inject } from "tsyringe";
 import { IUserContract } from "../Contracts/IUserContract.application.contracts";
 import { IJwtContext } from "../../Presentation/Http/Types/IJwtContextType.presentation.http.types";
+import CryptoJS from "crypto-js";
 import argon2 from "argon2";
 
 interface IUserService extends IUserContract {}
@@ -36,12 +37,19 @@ export class AuthService {
         }
       }
 
+      const HASH = CryptoJS.AES.encrypt(
+        email, 
+        String(process.env.APPLICATION_SECRET_KEY)
+      ).toString();
+
       const { security } = context;
       const TOKEN = await security.sign(
-        { email },
+        { HASH },
         String(process.env.APPLICATION_SECRET_KEY),
-        { expiresIn: "4h" }
+        { expiresIn: "8h", secret: String(process.env.APPLICATION_REFRESH_SECRET_KEY) }
       );
+
+
 
       return {
         codigo: 200,

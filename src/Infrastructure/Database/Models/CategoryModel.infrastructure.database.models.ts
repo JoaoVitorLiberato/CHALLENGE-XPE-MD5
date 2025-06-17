@@ -1,8 +1,9 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import { Database } from "../Config/ConnectDB.infrastructre.database.config";
 
-const CategoryModel = Database.define(
-  "categories", 
+class CategoryModel extends Model {}
+
+CategoryModel.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -27,6 +28,8 @@ const CategoryModel = Database.define(
     },
   },
   {
+    sequelize: Database,
+    modelName: "categories",
     tableName: "categories",
     timestamps: true,
     underscored: false

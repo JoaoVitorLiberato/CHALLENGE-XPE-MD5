@@ -1,9 +1,10 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import { Database } from "../Config/ConnectDB.infrastructre.database.config";
 import { CategoryModel } from "./CategoryModel.infrastructure.database.models";
 
-export const ProductModel = Database.define(
-  "products",
+class ProductModel extends Model {}
+
+ProductModel.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -44,13 +45,17 @@ export const ProductModel = Database.define(
     },
   },
   {
+    sequelize: Database,
+    modelName: "products",
     tableName: "products",
     timestamps: true,
     underscored: false
   }
 );
 
+
+
 CategoryModel.hasMany(ProductModel);
 ProductModel.belongsTo(CategoryModel, { foreignKey: "categoryId" });
 
-export default ProductModel;
+export { ProductModel };

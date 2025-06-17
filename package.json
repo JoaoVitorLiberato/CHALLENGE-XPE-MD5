@@ -11,6 +11,7 @@
     "@elysiajs/jwt": "^1.3.1",
     "@elysiajs/swagger": "^1.3.0",
     "argon2": "^0.43.0",
+    "crypto-js": "^4.2.0",
     "dotenv": "^16.5.0",
     "elysia": "latest",
     "pg": "^8.16.0",
@@ -20,6 +21,7 @@
     "uuid": "^11.1.0"
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
     "bun-types": "latest"
   },
   "module": "src/Presentation/Http/Server.presentation.http.ts"

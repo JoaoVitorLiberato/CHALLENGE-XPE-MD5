@@ -117,7 +117,6 @@ export class CategoryService implements ICategoryContract {
       const responseFindById = await this.category.findById(id);
 
       if (responseFindById === "error-findById-category") throw new Error("Houve um erro ao tentar buscar a categoria");
-
       if (!responseFindById) {
         return {
           codigo: 404,
@@ -147,16 +146,19 @@ export class CategoryService implements ICategoryContract {
 
   async delete(id: string): Promise<any> {
     try {
-      const responseRepository = await this.category.delete(id);
+      const responseFindById = await this.category.findById(id);
 
-      if (responseRepository === "error-delete-category") throw new Error("Houve um erro ao tentar deletar a categoria");
-
-      if (!responseRepository) {
+      if (responseFindById === "error-findById-category") throw new Error("Houve um erro ao tentar buscar a categoria");
+      if (!responseFindById) {
         return {
           codigo: 404,
           message: "Categoria não encontrada",
         }
       }
+
+      const responseRepository = await this.category.delete(id);
+
+      if (responseRepository === "error-delete-category") throw new Error("Houve um erro ao tentar deletar a categoria");
 
       return {
         codigo: 200,

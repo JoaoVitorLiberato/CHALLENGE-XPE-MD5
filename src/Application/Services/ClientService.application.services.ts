@@ -76,7 +76,6 @@ export class ClientService {
         }
       }
 
-      console.log(responseRepository)
       return {
         codigo: 200,
         message: "Clientes encontrados com sucesso",

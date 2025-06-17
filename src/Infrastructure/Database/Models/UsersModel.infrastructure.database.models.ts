@@ -1,8 +1,9 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import { Database } from "../Config/ConnectDB.infrastructre.database.config";
 
-export const UsersModel = Database.define(
-  "users", 
+class UsersModel extends Model {}
+
+UsersModel.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -32,8 +33,12 @@ export const UsersModel = Database.define(
     },
   },
   {
+    sequelize: Database,
+    modelName: "users",
     tableName: "users",
     timestamps: true,
     underscored: false,
   }
 );
+
+export { UsersModel };
