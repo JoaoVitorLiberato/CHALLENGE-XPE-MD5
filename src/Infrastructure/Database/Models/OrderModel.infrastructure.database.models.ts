@@ -20,6 +20,10 @@ OrderModel.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    items: {
+      type: DataTypes.JSON,
+      allowNull: false,
+    },
     clientId: {
       type: DataTypes.UUID,
       references: {

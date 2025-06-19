@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import { Elysia, Context } from "elysia";
+import Redis from "ioredis";
 import { cors } from "@elysiajs/cors";
 import { swagger } from "@elysiajs/swagger";
 import { jwt } from "@elysiajs/jwt"
@@ -12,6 +13,10 @@ import { CategoryRouter } from "./Routes/CategoryRouter.presentation.http.routes
 import { UserRouter } from "./Routes/UserRouter.presentation.http.routes";
 import { AuthRouter } from "./Routes/AuthRouter.presentation.http.routes";
 import { ProductRouter } from "./Routes/ProductRouter.presentation.http.routes";
+import { OrderRouter, clientsWebSocket } from "./Routes/OrderRouter.presentation.http.routes";
+
+import { WebSocketAdapter } from "../../Infrastructure/Adapters/WebSocketAdapter.infrasctructure.adapters";
+import { RedisSubscribe } from "../../Infrastructure/Redis/RedisSubscribe.infrastructure.redis";
 
 const App = new Elysia();
 
@@ -72,10 +77,18 @@ App.group("", (app) =>
   .use(UserRouter)
   .use(AuthRouter)
   .use(ProductRouter)
+  .use(OrderRouter)
 );
 
 App.onStart(async () => {
   await ConnecDatabase();
 });
+
+
+const webSocketAdapter = new WebSocketAdapter(clientsWebSocket);
+const redisClient = new Redis({ host: "redis", port: 6379 });
+const setupOrderNotification = new RedisSubscribe(redisClient, webSocketAdapter);
+setupOrderNotification.subscribe();
+
 
 export default App;

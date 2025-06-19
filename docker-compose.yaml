@@ -1,0 +1,45 @@
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: joaovitor98/xpe-challenge-app
+    container_name: app
+    tty: true
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/usr/src/app
+    networks:
+      - bangalo
+    depends_on:
+      - redis
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - 6380:6379
+    networks:
+      - bangalo
+    volumes:
+      - /cache/redis:/data
+    command: ["redis-server", "--save", "60", "1", "--loglevel", "warning"]
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: joaovitor98/nginx
+    container_name: nginx
+    ports:
+      - 8080:80
+    networks:
+      - bangalo
+    tty: true
+    restart: unless-stopped
+    depends_on:
+      - app
+
+networks:
+  bangalo:
+    driver: bridge

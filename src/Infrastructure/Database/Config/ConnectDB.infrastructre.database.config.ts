@@ -25,4 +25,7 @@ const ConnecDatabase = async () => {
   }
 };
 
-export { Database, ConnecDatabase };
+export {
+  Database,
+  ConnecDatabase
+};
