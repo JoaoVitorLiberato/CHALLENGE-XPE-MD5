@@ -52,7 +52,7 @@ A documentação Swagger estará disponível em `/swagger` após subir o servido
 
 Você pode testar todas as rotas importando a coleção do Postman:
 
-[Baixar coleção Postman](public/assets/postman/XPE-CHALLENGE.postman_collection.json)
+<a href="public/assets/postman/XPE-CHALLENGE.postman_collection.json" download="XPE-CHALLENGE.postman_collection.json">Baixar coleção Postman</a>
 
 ## Tecnologias Utilizadas
 
