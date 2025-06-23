@@ -1,5 +1,9 @@
 # Challenge XPE - Final Module
 
+<p align="center">
+  <img src="public/assets/img/XPE-DESAFIO-MD5.drawio.svg" alt="Diagrama XPE Desafio" width="100%"/>
+</p>
+
 ## Configuração de Ambiente
 
 Antes de rodar o projeto, crie um arquivo `.env` na raiz do projeto com as seguintes variáveis de ambiente:
@@ -31,7 +35,7 @@ bun run dev
 ### Com Docker
 
 ```bash
-docker-compose up --build
+docker-compose up -d --build
 ```
 
 - A aplicação estará disponível em http://localhost:3000/
@@ -108,7 +112,7 @@ O projeto segue princípios de **Clean Architecture** e **Domain-Driven Design (
 
 ## Rotas da API
 
-> **Nota:** Todas as rotas exigem o header `x-api-key` para acesso.
+> **Nota:** Todas as rotas exigem o header `x-api-key` para acesso exceto /swagger.
 
 ### AuthRouter
 
