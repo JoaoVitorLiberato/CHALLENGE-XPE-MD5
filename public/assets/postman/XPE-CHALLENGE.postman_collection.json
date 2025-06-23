@@ -1,0 +1,1436 @@
+{
+	"info": {
+		"_postman_id": "010e6d84-3619-423e-a6aa-66c04987a787",
+		"name": "XPE CHALLENGE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20984961"
+	},
+	"item": [
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "Login com Email e Senha",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test12@email.com\",\r\n    \"password\": \"12345678\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CATEGORIES",
+			"item": [
+				{
+					"name": "Ver todas as categorias",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categories"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Procurar categoria pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImpvYW9AZ21haWwuY29tIn0.DEFGS35zTidypHjNBp6xb9g_lSIDIlWkVEFnd3GlvbQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/category/056df48f-4a01-4c6c-b12a-0bd06f2e0fb4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"category",
+								"056df48f-4a01-4c6c-b12a-0bd06f2e0fb4"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver uma categoria pelo nome",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Tvs\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/category/name",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"category",
+								"name"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar uma nova categoria",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJIQVNIIjoiVTJGc2RHVmtYMStWZm94aTRBNVFSaGdMOHpRZ1czbjBHUU1NVXVYZGI1RDVJcUxWMkNyMTdkZWlHRkNnNWVpUyJ9.jc6byz1IyY-ULRCBDHDmow0ydRZdeppizq87b30ZfsY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Smartphones\",\r\n    \"description\": \"Categoria para Smartphones\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/category/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"category",
+								"create"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar uma categoria",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJIQVNIIjoiVTJGc2RHVmtYMStPU2sveDhEbEo1SXFsZ0NiRXB2N3JDcG5ZOWJ3bHlHRmJrQWF2eWNZUzl4WDNpNU5KdXFKKyJ9.aSszDG6wHL20MKJ_1JwsRwkGdCgbaoS62SrzIeKh11w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Tvs\",\r\n    \"description\": \"Categoria para Smat TVs\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/category/update/056df48f-4a01-4c6c-b12a-0bd06f2e0fb4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"category",
+								"update",
+								"056df48f-4a01-4c6c-b12a-0bd06f2e0fb4"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar categoria pelo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJIQVNIIjoiVTJGc2RHVmtYMStPU2sveDhEbEo1SXFsZ0NiRXB2N3JDcG5ZOWJ3bHlHRmJrQWF2eWNZUzl4WDNpNU5KdXFKKyJ9.aSszDG6wHL20MKJ_1JwsRwkGdCgbaoS62SrzIeKh11w",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/category/delete/7656907c-73ec-4f23-b95c-2401c49acaf1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"category",
+								"delete",
+								"7656907c-73ec-4f23-b95c-2401c49acaf1"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CLIENTS",
+			"item": [
+				{
+					"name": "Procurar cliente pelo nome",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test da silva\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/client/name",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"client",
+								"name"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Contar todos os clientes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImpvYW9AZ21haWwuY29tIn0.DEFGS35zTidypHjNBp6xb9g_lSIDIlWkVEFnd3GlvbQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/clients/count",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"clients",
+								"count"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar todos os clientes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImpvYW9AZ21haWwuY29tIn0.DEFGS35zTidypHjNBp6xb9g_lSIDIlWkVEFnd3GlvbQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"clients"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Procurar cliente pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImpvYW9AZ21haWwuY29tIn0.DEFGS35zTidypHjNBp6xb9g_lSIDIlWkVEFnd3GlvbQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/client/893705eb-1442-40fd-921a-6f4e8ba40880",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"client",
+								"893705eb-1442-40fd-921a-6f4e8ba40880"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar um novo cliente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test da silva\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/client/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"client",
+								"create"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar um cliente pelo ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3QxMkBlbWFpbC5jb20ifQ.5Qp0oGJbDalHBnJACmtN5Tzgmpsz__1RLvdyjYNwqBU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"João Vitor Liberato\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/client/update/cf248cd2-75e3-4623-a499-1d45a4b67ad2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"client",
+								"update",
+								"cf248cd2-75e3-4623-a499-1d45a4b67ad2"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar um cliente pelo ID Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImpvYW9AZ21haWwuY29tIn0.DEFGS35zTidypHjNBp6xb9g_lSIDIlWkVEFnd3GlvbQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/client/delete/5c569900-96d2-4035-9c1c-503a1f6abc69",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"client",
+								"delete",
+								"5c569900-96d2-4035-9c1c-503a1f6abc69"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "USERS",
+			"item": [
+				{
+					"name": "Procurar detalhes pelo email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3QxMkBlbWFpbC5jb20ifQ.5Qp0oGJbDalHBnJACmtN5Tzgmpsz__1RLvdyjYNwqBU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test12@email.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"me"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar novo usuário",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test da silva\",\r\n    \"email\": \"test12@email.com\",\r\n    \"password\": \"12345678\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"create"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PRODUCTS",
+			"item": [
+				{
+					"name": "Ver todos os produtos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3QxMkBlbWFpbC5jb20ifQ.5Qp0oGJbDalHBnJACmtN5Tzgmpsz__1RLvdyjYNwqBU",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Tv smart samsung 42p\",\r\n    \"price\": 500000,\r\n    \"description\": \"TV de 42 polegadas com XBOX XCloud\",\r\n    \"categoryId\": \"056df48f-4a01-4c6c-b12a-0bd06f2e0fb4\",\r\n    \"image\": \"tetse.png\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Conta todos os produtos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3QxMkBlbWFpbC5jb20ifQ.5Qp0oGJbDalHBnJACmtN5Tzgmpsz__1RLvdyjYNwqBU",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/products/count",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								"count"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Procurar producto pelo ID",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3QxMkBlbWFpbC5jb20ifQ.5Qp0oGJbDalHBnJACmtN5Tzgmpsz__1RLvdyjYNwqBU",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Tv smart samsung 42p\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/product/name",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product",
+								"name"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Procurar produto pelo nome",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3QxMkBlbWFpbC5jb20ifQ.5Qp0oGJbDalHBnJACmtN5Tzgmpsz__1RLvdyjYNwqBU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Tv smart samsung 42p\",\r\n    \"price\": 500000,\r\n    \"description\": \"TV de 42 polegadas com XBOX XCloud\",\r\n    \"categoryId\": \"056df48f-4a01-4c6c-b12a-0bd06f2e0fb4\",\r\n    \"image\": \"tetse.png\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/product/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product",
+								"create"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar um novo produto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJIQVNIIjoiVTJGc2RHVmtYMStWZm94aTRBNVFSaGdMOHpRZ1czbjBHUU1NVXVYZGI1RDVJcUxWMkNyMTdkZWlHRkNnNWVpUyJ9.jc6byz1IyY-ULRCBDHDmow0ydRZdeppizq87b30ZfsY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Iphone 16 pro max\",\r\n    \"price\": 900000,\r\n    \"description\": \"Iphone 16 pro max, novo modelo da apple\",\r\n    \"categoryId\": \"67437abb-e4b6-4ee6-8ae9-0084799a0f72\",\r\n    \"image\": \"tetse.png\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/product/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product",
+								"create"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza o  produto pelo ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3QxMkBlbWFpbC5jb20ifQ.5Qp0oGJbDalHBnJACmtN5Tzgmpsz__1RLvdyjYNwqBU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Tv smart samsung 55p 3D\",\r\n    \"price\": 500060,\r\n    \"description\": \"TV de 55 polegadas com XBOX XCloud\",\r\n    \"categoryId\": \"056df48f-4a01-4c6c-b12a-0bd06f2e0fb4\",\r\n    \"image\": \"tetse.png\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/product/update/b44cb9b9-c9a6-47c5-aca0-bb6ba6edbd19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product",
+								"update",
+								"b44cb9b9-c9a6-47c5-aca0-bb6ba6edbd19"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta o  produto pelo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3QxMkBlbWFpbC5jb20ifQ.5Qp0oGJbDalHBnJACmtN5Tzgmpsz__1RLvdyjYNwqBU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/product/delete/ceb707e0-36f1-43e6-a32b-1e6e1dbfbdb4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product",
+								"delete",
+								"ceb707e0-36f1-43e6-a32b-1e6e1dbfbdb4"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ORDERS",
+			"item": [
+				{
+					"name": "Criar um novo pedido",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3QxMkBlbWFpbC5jb20ifQ.5Qp0oGJbDalHBnJACmtN5Tzgmpsz__1RLvdyjYNwqBU",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clientId\": \"02c0d915-c81d-46a2-a898-3ca2ce1aa8c1\",\r\n    \"status\": \"pending\",\r\n    \"total\": 2850000,\r\n    \"items\": [\r\n        {\r\n            \"id\": \"31761d21-9d9b-4ae5-9b3d-84101b43e79f\",\r\n            \"name\": \"Iphone 16 pro max\",\r\n            \"quantity\": 3,\r\n            \"price\": 900000\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/order/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"order",
+								"create"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar pedido pelo ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJIQVNIIjoiVTJGc2RHVmtYMTlHWU9QN2hVV2RtN1I3MXdHVHczQUlYWHVVWFZEZ3hPcFRNR3AreGlJMEt0V2dCOTVBS1V0KyJ9.TcZr8AKuuxxjYZD9bCt-5p1eG-H60mzT227i0XI592U",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"success\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/order/update/e94953bb-2efc-4b81-8887-2a41aaa97a37",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"order",
+								"update",
+								"e94953bb-2efc-4b81-8887-2a41aaa97a37"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar pedido pelo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJIQVNIIjoiVTJGc2RHVmtYMTlHWU9QN2hVV2RtN1I3MXdHVHczQUlYWHVVWFZEZ3hPcFRNR3AreGlJMEt0V2dCOTVBS1V0KyJ9.TcZr8AKuuxxjYZD9bCt-5p1eG-H60mzT227i0XI592U",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/order/delete/e94953bb-2efc-4b81-8887-2a41aaa97a37",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"order",
+								"delete",
+								"e94953bb-2efc-4b81-8887-2a41aaa97a37"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver todos os pedidos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJIQVNIIjoiVTJGc2RHVmtYMTlHWU9QN2hVV2RtN1I3MXdHVHczQUlYWHVVWFZEZ3hPcFRNR3AreGlJMEt0V2dCOTVBS1V0KyJ9.TcZr8AKuuxxjYZD9bCt-5p1eG-H60mzT227i0XI592U",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"orders"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar pedido pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJIQVNIIjoiVTJGc2RHVmtYMTlHWU9QN2hVV2RtN1I3MXdHVHczQUlYWHVVWFZEZ3hPcFRNR3AreGlJMEt0V2dCOTVBS1V0KyJ9.TcZr8AKuuxxjYZD9bCt-5p1eG-H60mzT227i0XI592U",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/order/e94953bb-2efc-4b81-8887-2a41aaa97a37",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"order",
+								"e94953bb-2efc-4b81-8887-2a41aaa97a37"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Contar todos os pedidos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "988bc3f55da3f849a4e95cc",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJIQVNIIjoiVTJGc2RHVmtYMTlHWU9QN2hVV2RtN1I3MXdHVHczQUlYWHVVWFZEZ3hPcFRNR3AreGlJMEt0V2dCOTVBS1V0KyJ9.TcZr8AKuuxxjYZD9bCt-5p1eG-H60mzT227i0XI592U",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/order/count",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order",
+								"count"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer 988b4d9dba0c8d8cfc33992c71f55da3f849a46d1b203b47ce3c663ddb5e95cc",
+									"disabled": true
+								},
+								{
+									"key": "x-api-key",
+									"value": "988bc3f55da3f849a4e95cc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

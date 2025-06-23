@@ -48,6 +48,12 @@ Acesse http://localhost:3000/ para ver a API.
 
 A documentação Swagger estará disponível em `/swagger` após subir o servidor.
 
+## Coleção Postman
+
+Você pode testar todas as rotas importando a coleção do Postman:
+
+[Baixar coleção Postman](public/assets/postman/XPE-CHALLENGE.postman_collection.json)
+
 ## Tecnologias Utilizadas
 
 - **[Bun](https://bun.sh/):** Runtime ultrarrápido para JavaScript/TypeScript.
