@@ -18,7 +18,11 @@ const Database = new Sequelize(
 const ConnecDatabase = async () => {
   try {
     await Database.authenticate();
-    // await Database.sync(); // sincroniza o banco de dados com as entidades do projeto sem apagar os dados e tabelas existentes
+    await Database.sync({
+      alter: {
+        drop: false
+      }
+    }); // sincroniza o banco de dados com as entidades do projeto sem apagar os dados e tabelas existentes
     // await Database.sync({ force: true }); // força a sincronização do banco de dados e apaga todas as tabelas e dados existentes
   } catch (error) {
     console.error("Erro ao conectar ao banco de dados", error);
